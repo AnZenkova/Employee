@@ -25,10 +25,10 @@ public class Employee {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        Employee employee = (Employee) other;
         return employeeName.equals(employee.employeeName) && employeeLastName.equals(employee.employeeLastName);
     }
 
