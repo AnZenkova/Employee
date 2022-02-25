@@ -20,11 +20,11 @@ public class EmployeeService {
 
     public void addNewEmployee(String employeeName, String employeeLastName) {
         if (size >= employees.length) {
-            throw new ArrayIsFull();
+            throw new ArrayIsFullException("Массив сотрудников переполнен", null);
         }
         for (int i = 0; i < employees.length; i++) {
             if (employees[i].getEmployeeLastName().equals(employeeLastName) && employees[i].getEmployeeName().equals(employeeName)) {
-                throw new EmployeeIsInArray();
+                throw new EmployeeIsInArrayException("Добавляемый сотрудник уже имеется в массиве", null);
             }
             if (employees[i] == null) {
                 employees[i] = new Employee(employeeLastName, employeeName);
@@ -46,7 +46,7 @@ public class EmployeeService {
             }
         }
         if (a == employees.length) {
-            throw new NotFound();
+            throw new NotFoundEmployeeException("Удаляемый сотрудник не найден", null);
         }
     }
 
@@ -62,7 +62,7 @@ public class EmployeeService {
             }
         }
         if (a == size) {
-            throw new NotFound();
+            throw new NotFoundEmployeeException("Сотрудник не найден", null);
         }
         return employee;
     }
