@@ -2,12 +2,13 @@ package pro.sky.Employee.Service;
 
 import pro.sky.Employee.Class.Employee;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public interface EmployeeService {
 
     Employee addNewEmployee(Employee employee);
-    void removeEmployee(Employee employee);
-    Employee findEmployees(Employee employee);
-    List<Employee> getEmployees();
+    void removeEmployee(Integer iD);
+    Employee findEmployees(Integer iD);
+    Set<Map.Entry<Integer, Employee>> getEmployees();
 }
