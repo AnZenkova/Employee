@@ -8,7 +8,7 @@ import java.util.Set;
 public interface EmployeeService {
 
     Employee addNewEmployee(Employee employee);
-    void removeEmployee(Integer iD);
-    Employee findEmployees(Integer iD);
-    Set<Map.Entry<Integer, Employee>> getEmployees();
+    void removeEmployee(Employee employee);
+    Integer findEmployees(Employee employee);
+    Set<Map.Entry<Employee, Integer>> getEmployees();
 }

@@ -1,6 +1,5 @@
 package pro.sky.Employee.Cntroller;
 
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +9,7 @@ import pro.sky.Employee.Service.EmployeeService;
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
+
     private EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
@@ -25,14 +25,18 @@ public class EmployeeController {
     }
 
     @RequestMapping("/remove")
-    public String remove(@RequestParam Integer id) {
-        employeeService.removeEmployee(id);
-        return  "Сотрудник  с ID " + id + " удалён";
+    public String remove(@RequestParam String firstName,
+                         @RequestParam String lastName) {
+        Employee employee = new Employee(firstName,lastName);
+        employeeService.removeEmployee(employee);
+        return  "Сотрудник  с ID " + employee + " удалён";
     }
 
     @RequestMapping("/find")
-    public String find(@RequestParam Integer id) {
-        return String.valueOf(employeeService.findEmployees(id));
+    public String find(@RequestParam String firstName,
+                       @RequestParam String lastName) {
+        Employee employee = new Employee(firstName,lastName);
+        return String.valueOf(employeeService.findEmployees(employee));
     }
 
     @RequestMapping("/get")

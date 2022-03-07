@@ -1,4 +1,4 @@
-package pro.sky.Employee.Class; // Не понимаю как именно сделать пакет с маленькой буквы
+package pro.sky.Employee.Class;
 
 import java.util.Objects;
 
