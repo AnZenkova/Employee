@@ -10,7 +10,7 @@ import pro.sky.Employee.Service.EmployeeService;
 @RequestMapping("/employee")
 public class EmployeeController {
 
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
@@ -20,28 +20,28 @@ public class EmployeeController {
     public String addEmployee(@RequestParam String firstName,
                               @RequestParam String lastName) {
         Employee employee = new Employee(firstName,lastName);
-        employeeService.addNewEmployee(employee);
-        return "Сотрудник " + employee + " добавлен.";
+        String nameEmployee = lastName + " " + firstName;
+        return "Сотрудник " + employeeService.addNewEmployee(nameEmployee, employee) + " добавлен.";
     }
 
     @RequestMapping("/remove")
     public String remove(@RequestParam String firstName,
                          @RequestParam String lastName) {
-        Employee employee = new Employee(firstName,lastName);
-        employeeService.removeEmployee(employee);
-        return  "Сотрудник  с ID " + employee + " удалён";
+        String nameEmployee = lastName + " " + firstName;
+        employeeService.removeEmployee(nameEmployee);
+        return  "Сотрудник  с ID " + nameEmployee + " удалён";
     }
 
     @RequestMapping("/find")
     public String find(@RequestParam String firstName,
                        @RequestParam String lastName) {
-        Employee employee = new Employee(firstName,lastName);
-        return String.valueOf(employeeService.findEmployees(employee));
+        String nameEmployee = lastName + " " + firstName;
+        return employeeService.findEmployees(nameEmployee);
     }
 
     @RequestMapping("/get")
     public String getEmployees() {
-        return String.valueOf(employeeService.getEmployees());
+        return employeeService.getEmployees();
     }
 
 }
